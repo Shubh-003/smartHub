@@ -1,0 +1,24 @@
+1. using refference of apple and samsum add more describtion of product like ram, performance, etc
+
+
+
+
+
+
+
+https://codepen.io/alexkleinubing/pen/abBzMKe       -glass
+https://codepen.io/khr2003/pen/YzpXPmv              - comparism
+
+
+
+
+
+
+
+
+
+
+1st - https://tomcat.apache.org/download-10.cgi  - 64-bit Windows zip (pgp, sha512)
+create project - new - dynamic project
+                 select runtime env - extracted tomcat download
+                 select jdk
