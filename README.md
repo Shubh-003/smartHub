@@ -71,7 +71,16 @@ Password : your_password
 
 
 ---
+## Output
+<img src="smartHub-home.jpg" />
+<img src="output2.jpg" />
+<img src="output3.jpg" />
+<img src="output4.jpg" />
+<img src="output5.jpg" />
+<img src="output6.jpg" />
+<img src="output7.jpg" />
 
+---
 ## ✅ Future Enhancements
 - Add Spring Boot Migration
 - Implement JWT Authentication
