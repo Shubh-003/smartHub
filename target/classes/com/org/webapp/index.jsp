@@ -531,7 +531,7 @@ body {
             <!-- Review 1 -->
             <div class="col-md-4">
                 <div class="testimonial-card">
-                    <p data-aos="zoom-in-down">"Amazing shopping experience! Got my iPhone delivered in 2 days 😍"</p>
+                    <p data-aos="zoom-in-down">"Amazing shopping experience! Got my iPhone delivered in 3 days 😍"</p>
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <h6>- Rahul Sharma</h6>
                 </div>
