@@ -9,14 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.org.DBConnection;
+
 @WebServlet("/Admin/DiscountServlet")
 public class DiscountServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // JDBC credentials
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/smarthub";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "root";
+//    private static final String DB_URL = "jdbc:mysql://localhost:3306/smarthub";
+//    private static final String DB_USER = "root";
+//    private static final String DB_PASSWORD = "root";
 
     public DiscountServlet() {
         super();
@@ -33,7 +35,7 @@ public class DiscountServlet extends HttpServlet {
             return;
         }
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection conn = DBConnection.getConnection()) {
 
             if ("add".equalsIgnoreCase(action)) {
                 // Read form parameters
@@ -69,6 +71,9 @@ public class DiscountServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.print(e);
+        }catch (Exception e) {
+            // Added generic catch because DBConnection might throw ClassNotFoundException
+            e.printStackTrace();
         }
 
         // Redirect back to offers page

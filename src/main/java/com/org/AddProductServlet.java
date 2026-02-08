@@ -45,9 +45,10 @@ public class AddProductServlet extends HttpServlet {
         try {
             // DB connection
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/smarthub", "root", "root"
-            );
+//            Connection con = DriverManager.getConnection(
+//                "jdbc:mysql://localhost:3306/smarthub", "root", "root"
+//            );
+            Connection con = com.org.DBConnection.getConnection();
 
             String sql = "INSERT INTO products " +
                          "(prod_name, prod_category, prod_mrp, prod_stock, prod_storage, prod_colour, prod_desc, prod_img) " +

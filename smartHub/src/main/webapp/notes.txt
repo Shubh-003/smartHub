@@ -1,0 +1,181 @@
+FUNCTIONALLITY:
+1. Confirm password
+2. email already exist
+3. password Hash using BCrypt  : BCrypt automatically salts and slows brute force attacks.
+4. ache-Control in Protected Pages
+5. shop -Instant results (optional live search with AJAX)
+6. CRUD operation on products
+
+Shop : want sort ,price range,brand,category,liked tab at top horizontaly with white back ground , have some margin from start and end(container)
+
+
+
+<%@ include file="navbar.jsp" %>  <!--  if your navbar is separate -->
+
+-- server side check confirm password and redirect msg from servlet to jsp.
+// Check confirm password
+        if (!password.equals(confirmPassword)) {
+    		request.setAttribute("errorMessage", "⚠️ Password and Confirm Password do not match!");
+    		request.getRequestDispatcher("signup.jsp").forward(request, response);
+    		return;
+		}
+        
+        <% String errorMessage = (String) request.getAttribute("errorMessage"); %>    -- signUp.jsp
+			<% if (errorMessage != null) { %>
+   				 <div style="color: red; font-weight: bold; margin-bottom: 10px;">
+        			<%= errorMessage %>
+    			</div>
+			<% } %>
+
+
+
+-- ✅ Check if email already exists
+        String checkSql = "SELECT * FROM registration WHERE userEmail = ?";
+        java.sql.PreparedStatement checkPs = con.prepareStatement(checkSql);
+        checkPs.setString(1, email);
+        java.sql.ResultSet rs = checkPs.executeQuery();
+        
+
+        
+--         ✅ Hash the password using BCrypt
+     String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+     ps.setString(3, hashedPassword);
+     if (BCrypt.checkpw(enteredPassword, storedHashedPassword)) {
+    	// login success
+	 } else {
+   		 // invalid password
+	}
+	
+	
+	
+-- get user name in home page:
+			<h2>Welcome, <%= session.getAttribute("userName") %>!</h2>
+			
+			
+-- Add Cache-Control in Protected Pages OR destroy prevous sasion
+pasted on top of index.jsp
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    response.setDateHeader("Expires", 0); // Proxies
+%>
+
+
+-- get file parameter from form
+		Part filePart = request.getPart("prodImg");
+		String fileName = filePart.getSubmittedFileName();
+
+-- using preapreStatement
+		String prodMrp = request.getParameter("prodMrp");
+		ps.setDouble(3, Double.parseDouble(prodMrp));
+
+
+-- apply servle on buttons like edit and delete 
+	. create form for this button action="editServlet"
+			take two inputs 1st: <input type="hidden" name="action" value="edit"> -for which action to perform like "edit"
+						    2nd: <input type="hidden" name="prod_id" value="<%= rs.getInt("prod_id") %>"> - 
+
+
+-- if equal then this or else
+				<td>
+                  <% if ("Paid".equalsIgnoreCase(paymentStatus)) { %>
+                    <span class="badge bg-success">Paid</span>
+                  <% } else { %>
+                    <span class="badge bg-danger">Pending</span>
+                  <% } %>
+                </td>
+
+
+
+
+-- for Adimin servlet mapping url:
+									@WebServlet("/Admin/UpdateOrderStatusServlet")
+									action="<%= request.getContextPath() %>/Admin/UpdateOrderStatusServlet"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- DB
+
+Admin :
+		ADD Product : prodId, prod_category, prodName, prodImg , prodDesc, prod_storage, prod_colour, prodMrp, prod_stock
+		Offers: 	  offer_id, offer_name, category , discount_percent, start_date, end_date
+		
+		
+		
+CREATE TABLE Products (
+    prod_id 					INT PRIMARY KEY AUTO_INCREMENT,
+    prod_category  varchar(100)
+    prod_name VARCHAR(100) 			NOT NULL,
+    prod_desc TEXT,
+    prod_mrp DECIMAL(10,2),
+    prod_disc VARCHAR(255),
+    prod_storage 				JSON,        -- e.g., '["256 GB | 12 GB","512 GB | 12 GB"]'
+    prod_colour 						JSON,                -- e.g., '["Gray","Silver"]'
+    prod_stock INT 					DEFAULT 0,
+    prod_image_url VARCHAR(255),
+    created_at TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE Offers (
+    offer_id INT PRIMARY KEY AUTO_INCREMENT,
+    offer_name VARCHAR(100) NOT NULL,         -- e.g., 'Diwali Sale'
+    prod_category VARCHAR(50)		          -- e.g., 'Smartphones'
+    discount_percent DECIMAL(5,2),            -- e.g., 20.00
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+
+
+
+
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConnection {
+    private static final String URL = "jdbc:mysql://localhost:3306/yourDB";
+    private static final String USER = "yourUsername";
+    private static final String PASSWORD = "yourPassword";
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // load driver
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+}
+
+
+Connection conn = DBConnection.getConnection();
+
+
+
+-- add and delete functionality in same servelt
+<form method="post" action="DiscountServlet?action=add">  -jsp
+
+String action = request.getParameter("action");  --servlet
+ if ("add".equalsIgnoreCase(action)) {
+ }
+ else if ("delete".equalsIgnoreCase(action)) {	... }

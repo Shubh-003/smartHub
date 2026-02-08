@@ -1,0 +1,80 @@
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+     .gradient-heading {
+    /* background: -webkit-linear-gradient(356deg, #0090F7, #BA62FC, #F2416B, #F55600); */
+    background: linear-gradient(94deg, #0090F7, #BA62FC, #F2416B, #F55600);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* display: inline-block; */
+}
+
+    /* Sidebar */
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: #fff;
+      border-right: 1px solid #e6e6e6;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #333;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #007bff;
+      color: #fff;
+      border-radius: 8px;
+      margin: 4px;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    /* Top Navbar */
+    .top-navbar {
+      background: #fff;
+      border-bottom: 1px solid #e6e6e6;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+     .card {
+      border-radius: 10px;
+    }
+    .modal-header {
+      background: #007bff;
+      color: white;
+    }
+
+    .search-bar {
+      max-width: 400px;
+    }
+
+    .profile-dropdown img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+
+
+    

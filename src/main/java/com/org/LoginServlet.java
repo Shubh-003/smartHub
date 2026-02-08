@@ -31,9 +31,10 @@ public class LoginServlet extends HttpServlet {
 
         try {
             // ✅ Load JDBC Driver and connect
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthub", "root", "root");
-
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthub", "root", "root");
+        	con = DBConnection.getConnection();
+        	
             // ✅ Get the hashed password from DB for the given email
             String sql = "SELECT * FROM registration WHERE userEmail = ?";
             pst = con.prepareStatement(sql);

@@ -35,8 +35,9 @@ public class ModifyProductServlet extends HttpServlet {
                 con = DBConnection.getConnection();
             } catch (Throwable t) {
                 // fallback to DriverManager if DBConnection not available
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthub", "root", "root");
+//                Class.forName("com.mysql.cj.jdbc.Driver");
+//                con = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthub", "root", "root");
+            	con = DBConnection.getConnection();
             }
 
             if ("edit".equalsIgnoreCase(action)) {

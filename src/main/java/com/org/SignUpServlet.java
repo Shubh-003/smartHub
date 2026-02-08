@@ -47,8 +47,9 @@ public class SignUpServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // 3. Create Connection
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthub", "root", "root");
-
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthub", "root", "root");
+            Connection con = com.org.DBConnection.getConnection();
+            
             // 4. Check if email already exists
             String checkSql = "SELECT * FROM registration WHERE userEmail = ?";
             PreparedStatement checkPs = con.prepareStatement(checkSql);
