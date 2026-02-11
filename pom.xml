@@ -19,6 +19,20 @@
         <version>2.3.3</version>
         <scope>provided</scope>
     </dependency>
+	
+	<dependency>
+  <groupId>org.apache.tomcat</groupId>
+  <artifactId>tomcat-servlet-api</artifactId>
+  <version>9.0.85</version>
+  <scope>provided</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+</dependency>
+
 
     <dependency>
         <groupId>mysql</groupId>
